@@ -1,52 +1,81 @@
-body{
-    text-align: center;
-    background-color: #011f3f;
+body {
+  text-align: center;
+  background-color: #011f3f;
+  margin: 0px;
+  padding: 0;
 }
-#title{
-    color: #fef2bf;
-    font-family: 'Press Start 2P', cursive;
-    font-size: 3rem;
-    margin: 5%;
+#title {
+  color: #fef2bf;
+  font-family: "Press Start 2P", cursive;
+  font-size: 2rem;
 }
-.container{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.header {
+  height: 100px;
+  margin: 5vh;
 }
-/* @media only screen and (max-width: 768px) {
-    #title{
-        font-size: 1.5rem;
-    }
-    .btn{
-        margin: 0rem;
-    }
-} */
-.red{
-    background-color: #ff0000;
+.container {
+  display: flex;
+  justify-content: top;
+  flex-direction: column;
+  align-items: center;
 }
-.blue{
-    background-color: #0000ff;
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
 }
-.green{
-    background-color: #008000;
+#blocker{
+    position: fixed;
+    z-index: 10;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
 }
-.yellow{
-    background-color: #ffff00;
+.red {
+  background-color: #ff0000;
 }
-.btn{
-    width: 10rem;
-    height: 10rem;
-    border: 10px solid black;
-    border-radius: 20%;
-    margin: 0.5rem;
-    display: inline-block;
+.blue {
+  background-color: #0000ff;
+}
+.green {
+  background-color: #008000;
+}
+.yellow {
+  background-color: #ffff00;
+}
+.btn {
+  width: 10rem;
+  height: 10rem;
+  border: 10px solid black;
+  border-radius: 20%;
+  margin: 0.5rem;
+  display: inline-block;
 }
 .pressed {
-    box-shadow: 0 0 20px white;
-    background-color: grey;
+  box-shadow: 0 0 20px white;
+  background-color: grey;
+}
+.game-over {
+  background-color: red;
+  opacity: 0.8;
+}
+
+.disabled{
+    display: none;
+}
+
+@media only screen and (max-width: 480px) {
+  .header {
+    height: 160px;
+    margin: 1vh;
   }
-  .game-over {
-    background-color: red;
-    opacity: 0.8;
+  .container {
+    justify-content: center;
   }
+  .btn {
+    height: 7.8rem;
+    width: 7.8rem;
+    border-width: 7.8px;
+  }
+}

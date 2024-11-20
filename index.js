@@ -1,3 +1,7 @@
+// var isTouchDevice =
+//   "ontouchstart" in window ||
+//   navigator.MaxTouchPoints > 0 ||
+//   navigator.msMaxTouchPoints > 0;
 var buttomColors = ["red", "green", "blue", "yellow"];
 var gamePattern = [];
 var userClickedPattern = [];
@@ -11,8 +15,6 @@ $(".btn").click(function () {
   animatePress(userChosenColor);
   checkAnswer(userClickedPattern.length - 1);
 });
-
-
 
 function nextSequence() {
   userClickedPattern = [];
@@ -39,9 +41,26 @@ function animatePress(currentColor) {
   }, 100);
 }
 
+function startOver() {
+  level = 0;
+  gamePattern = [];
+  started = false;
+}
+
+// if (!isTouchDevice) {
+$("#blocker").click(function () {
+  $("#blocker").toggleClass("disabled");
+  if (!started) {
+    setTimeout(function () {
+      $("#title").text("level " + level);
+      nextSequence();
+    }, 400);
+    started = true;
+  }
+});
+
 function checkAnswer(currentLevel) {
   if (userClickedPattern[currentLevel] === gamePattern[currentLevel]) {
-    console.log("success");
     if (userClickedPattern.length === gamePattern.length) {
       setTimeout(function () {
         nextSequence();
@@ -50,43 +69,44 @@ function checkAnswer(currentLevel) {
   } else {
     playSound("wrong");
     $("body").toggleClass("game-over");
-    setTimeout(function(){
+    setTimeout(function () {
       $("body").toggleClass("game-over");
-    },200);
-    $("#title").text("Game Over, Press Any Key to Restart");
+    }, 200);
+    $("#title").text("Game Over, Click On The Screen to Restart");
+    $("#blocker").toggleClass("disabled");
     startOver();
   }
 }
+// } else {
+//   $("#title").text("Touch The Screen to Start");
 
-function startOver(){
-  level=0;
-  gamePattern=[];
-  started=false;
-}
+//   $("#blocker").on("touchstart", function () {
+//     $("#blocker").toggleClass("disabled");
+//     if (!started) {
+//       setTimeout(function () {
+//         $("#title").text("level " + level);
+//         nextSequence();
+//       }, 400);
+//       started = true;
+//     }
+//   });
 
-var isTouchDevice =
-    (('ontouchstart' in window) ||
-    (navigator.MaxTouchPoints > 0) ||
-    (navigator.msMaxTouchPoints > 0));
-if(!isTouchDevice){
-  $(document).keypress(function () {
-    if (!started) {
-      setTimeout(function(){
-        $("#title").text("level " + level);
-        nextSequence();
-      },400);
-      started = true;
-    }
-  });
-}else{
-  $("#title").text("Touch Screen to Start")
-  $(document).on("touchstart",function () {
-    if (!started) {
-      setTimeout(function(){
-        $("#title").text("level " + level);
-        nextSequence();
-      },400);
-      started = true;
-    }
-  });
-}
+//   function checkAnswer(currentLevel) {
+//     if (userClickedPattern[currentLevel] === gamePattern[currentLevel]) {
+//       if (userClickedPattern.length === gamePattern.length) {
+//         setTimeout(function () {
+//           nextSequence();
+//         }, 1000);
+//       }
+//     } else {
+//       playSound("wrong");
+//       $("body").toggleClass("game-over");
+//       setTimeout(function () {
+//         $("body").toggleClass("game-over");
+//       }, 200);
+//       $("#title").text("Game Over, Touch The Screen to Restart");
+//       $("#blocker").toggleClass("disabled");
+//       startOver();
+//     }
+//   }
+// }
