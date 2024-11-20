@@ -12,13 +12,7 @@ $(".btn").click(function () {
   checkAnswer(userClickedPattern.length - 1);
 });
 
-$(document).keypress(function () {
-  if (!started) {
-    $("#title").text("level " + level);
-    nextSequence();
-    started = true;
-  }
-});
+
 
 function nextSequence() {
   userClickedPattern = [];
@@ -68,4 +62,31 @@ function startOver(){
   level=0;
   gamePattern=[];
   started=false;
+}
+
+var isTouchDevice =
+    (('ontouchstart' in window) ||
+    (navigator.MaxTouchPoints > 0) ||
+    (navigator.msMaxTouchPoints > 0));
+if(!isTouchDevice){
+  $(document).keypress(function () {
+    if (!started) {
+      setTimeout(function(){
+        $("#title").text("level " + level);
+        nextSequence();
+      },400);
+      started = true;
+    }
+  });
+}else{
+  $("#title").text("Touch Screen to Start")
+  $(document).on("touchstart",function () {
+    if (!started) {
+      setTimeout(function(){
+        $("#title").text("level " + level);
+        nextSequence();
+      },400);
+      started = true;
+    }
+  });
 }

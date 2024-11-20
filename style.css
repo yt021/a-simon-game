@@ -9,11 +9,19 @@ body{
     margin: 5%;
 }
 .container{
-    display: block;
-    width: 50%;
-    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
-
+/* @media only screen and (max-width: 768px) {
+    #title{
+        font-size: 1.5rem;
+    }
+    .btn{
+        margin: 0rem;
+    }
+} */
 .red{
     background-color: #ff0000;
 }
@@ -27,11 +35,11 @@ body{
     background-color: #ffff00;
 }
 .btn{
-    width: 12.5rem;
-    height: 12.5rem;
+    width: 10rem;
+    height: 10rem;
     border: 10px solid black;
     border-radius: 20%;
-    margin: 2rem;
+    margin: 0.5rem;
     display: inline-block;
 }
 .pressed {
